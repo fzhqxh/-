@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>致我永恒的星光 | 齐女士</title>
+    <style>
+        :root {
+            --primary-color: #ff7eb3;
+            --secondary-color: #ff758c;
+            --text-glow: rgba(255, 126, 179, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'STKaiti', cursive;
+        }
+
+        body {
+            background: #0f0c29;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: linear-gradient(45deg, #0f0c29, #302b63);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-hearts::before {
+            content: '❤';
+            position: absolute;
+            color: var(--primary-color);
+            animation: float 8s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px var(--text-glow);
+            position: relative;
+            z-index: 2;
+        }
+
+        .animated-text {
+            background: linear-gradient(45deg, #ff7eb3, #ff758c);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: hue 5s infinite linear;
+        }
+
+        @keyframes hue {
+            from { filter: hue-rotate(0deg); }
+            to { filter: hue-rotate(360deg); }
+        }
+
+        .love-letter {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .moment-card {
+            background: linear-gradient(45deg, #302b63, #24243e);
+            padding: 25px;
+            border-radius: 15px;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .moment-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .interactive-heart {
+            width: 60px;
+            height: 60px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="floating-hearts"></div>
+        <h1><span class="animated-text">齐女士</span></h1>
+        <p style="font-size: 1.2rem;">你是我宇宙中永不熄灭的星光</p >
+    </div>
+
+    <div class="container">
+        <section class="love-letter">
+            <h2>致我最亲爱的齐：</h2>
+            <p>在遇见你的第<span style="color: var(--primary-color);">108</span>天，我终于明白...</p >
+            <p>你的笑容是春天的第一缕晨光，融化了我所有伪装的坚强；</p >
+            <p>你的眼眸是仲夏夜的星河，让我甘愿在其中永远沉溺；</p >
+            <p>与你相处的每一刻，都像是被施了魔法的时光...</p >
+        </section>
+
+        <section class="timeline">
+            <div class="moment-card">
+                <h3>初见 • 惊鸿</h3>
+                <p>2021.03.15 晚自习的过后</p >
+                <p>当我拿着蛋糕，静静的看着你，才知道你是多么的美丽动人</p >
+            </div>
+            <div class="moment-card">
+                <h3>心动 • 轨迹</h3>
+                <p>20去.11.20 操场的晚风</p >
+                <p>你说夜空中最亮的星，却不知我的目光从未离开过你的眼睛</p >
+            </div>
+        </section>
+
+        <div class="interactive-heart">❤</div>
+
+        <audio id="bgm" loop>
+            <source src="https://www.orangefreesounds.com/wp-content/uploads/2022/04/romantic-piano-ambient-102bpm-163966.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        // 生成浮动爱心
+        function createHearts() {
+            const container = document.querySelector('.hero');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-hearts';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // 点击爱心特效
+        document.querySelector('.interactive-heart').addEventListener('click', function() {
+            this.style.color = '#ff4757';
+            setTimeout(() => this.style.color = 'white', 500);
+            document.getElementById('bgm').play();
+            
+            // 生成点击特效
+            const burst = document.createElement('div');
+            burst.innerHTML = '❤'.repeat(10);
+            burst.style.position = 'fixed';
+            burst.style.left = '50%';
+            burst.style.top = '50%';
+            burst.style.transform = 'translate(-50%,-50%)';
+            burst.style.animation = 'pulse 0.5s';
+            document.body.appendChild(burst);
+            setTimeout(() => burst.remove(), 1000);
+        });
+
+        // 自动播放背景音乐（需用户交互后）
+        document.addEventListener('click', function initAudio() {
+            document.getElementById('bgm').play();
+            document.removeEventListener('click', initAudio);
+        });
+    </script>
+</body>
+</html>
